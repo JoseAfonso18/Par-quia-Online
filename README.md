@@ -14,6 +14,7 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Documentação](#documentação)
 - [Sprints](#sprints)
+- [Melhorias posteriores](#melhorias-posteriores)
 - [Licença](#licença)
 - [Créditos da equipe](#créditos-da-equipe)
 
@@ -23,11 +24,17 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 
 **Público**
 
-- Consulta de horários de missas, ordenados de domingo a sábado
-- Agenda de eventos e festas da comunidade
-- Avisos paroquiais, com destaque na página inicial
-- Listagem de grupos e pastorais ativos
-- Páginas Home, Sobre e Contato, com envio real de e-mail via SMTP
+- Página inicial com a próxima missa, a agenda da semana, avisos em destaque, próximos eventos, grupos e a localização da paróquia
+- Horários de missas com destaque da próxima celebração e quadro completo da semana
+- Agenda de eventos e festas da comunidade, com fotos
+- Grupos e pastorais ativos, com fotos, responsável, dia e horário de reunião
+- Catequese: turmas por faixa etária, horários e documentos para inscrição
+- Sacramentos: batizado e casamento, com passo a passo e documentação necessária
+- Avisos paroquiais, separados entre destaques e demais comunicados
+- Página Sobre com a história, o carrossel de fotos e as comunidades atendidas
+- Contato pelo WhatsApp da secretaria ou por formulário com envio real de e-mail via SMTP
+- Localização no Google Maps, com rota "como chegar"
+- Links para as redes sociais oficiais da paróquia
 
 **Fiéis cadastrados**
 
@@ -37,7 +44,9 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 
 **Secretaria**
 
+- Painel com indicadores da paróquia: totais de eventos, avisos, missas e grupos, próximos eventos, grupos com mais inscritos e avisos recentes
 - Gestão completa de eventos, avisos, grupos e horários de missas
+- Envio de fotos para eventos e grupos, com substituição e remoção
 - Ativação/desativação de grupos e missas sem perda de histórico
 - Consulta de inscritos por grupo e de voluntários por evento
 
@@ -48,6 +57,12 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 - Bootstrap 5
 - Blade (template engine do Laravel)
 - PHPUnit (testes Unit e Feature)
+
+**Integrações**
+
+- WhatsApp (link direto para conversa, com mensagem pronta conforme o grupo, evento ou turma)
+- Google Maps (mapa da paróquia e traçado de rota)
+- SMTP para o envio das mensagens do formulário de contato
 
 ## Testes
 
@@ -89,6 +104,17 @@ A documentação completa do projeto é entregue em documento único, formatado 
 - **Sprint 1** — US001 a US004: horários de missas, eventos e festas, cadastro e login.
 - **Sprint 2** — US005 a US012: inscrição em grupos, voluntariado, gestão de eventos e avisos, Home, Sobre, Avisos e Contato.
 - **Sprint 3** — US013 a US017: CRUD de grupos e de missas, envio real de e-mail no contato, testes automatizados e refinos de UX (hero na home e rodapé fixo).
+
+## Melhorias posteriores
+
+Evoluções implementadas após a Sprint 3, a partir do retorno da paróquia:
+
+- Contato pelo WhatsApp em todo o site, com mensagem já preenchida conforme o grupo, o evento ou a turma escolhida
+- Fotos em grupos e eventos, enviadas pela própria secretaria
+- Novas páginas de Catequese e de Sacramentos (batizado e casamento)
+- Página inicial reformulada, com próxima missa, agenda da semana, vários avisos em destaque e localização no mapa
+- Painel administrativo transformado em dashboard, com indicadores e ações rápidas
+- Rodapé institucional com navegação, contato e redes sociais
 
 ## Licença
 
