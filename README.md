@@ -13,7 +13,6 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 - [Requisitos](#requisitos)
 - [Configuração do ambiente de desenvolvimento](#configuração-do-ambiente-de-desenvolvimento)
 - [Como rodar localmente](#como-rodar-localmente)
-- [Acesso administrador](#acesso-administrador)
 - [Testes](#testes)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Deploy em produção](#deploy-em-produção)
@@ -102,33 +101,6 @@ php artisan serve
 ```
 
 Acesse <http://localhost:8000>.
-
-## Acesso administrador
-
-O acesso ao painel é restrito à secretaria da paróquia. As credenciais **não ficam no
-repositório**: elas são definidas no seu arquivo `.env`, que não é versionado.
-
-Antes de rodar o seeder, defina no `.env`:
-
-```env
-ADMIN_EMAIL=admin@paroquia.com
-ADMIN_SENHA=uma-senha-forte-sua
-```
-
-Depois crie o administrador:
-
-```bash
-php artisan db:seed --class=AdminSeeder
-```
-
-Painel: <http://localhost:8000/admin>
-
-> **Atenção:** o `AdminSeeder` usa `updateOrCreate`. Rodá-lo novamente com um
-> `ADMIN_SENHA` diferente **redefine a senha** do administrador — é assim que se
-> troca a senha caso ela seja esquecida.
->
-> Se o `.env` não definir essas variáveis, o seeder cria a conta com uma senha
-> provisória (`trocar-esta-senha`), que deve ser alterada imediatamente.
 
 ## Testes
 
