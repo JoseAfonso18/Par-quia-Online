@@ -10,13 +10,10 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
-- [Requisitos](#requisitos)
-- [Configuração do ambiente de desenvolvimento](#configuração-do-ambiente-de-desenvolvimento)
-- [Como rodar localmente](#como-rodar-localmente)
 - [Testes](#testes)
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Deploy em produção](#deploy-em-produção)
 - [Documentação](#documentação)
+- [Sprints](#sprints)
 - [Licença](#licença)
 - [Créditos da equipe](#créditos-da-equipe)
 
@@ -38,9 +35,9 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 - Inscrição e cancelamento em grupos e pastorais
 - Candidatura a voluntariado em eventos, com mensagem opcional
 
-**Administradores (`/admin`)**
+**Secretaria**
 
-- CRUD de eventos, avisos, grupos e horários de missas
+- Gestão completa de eventos, avisos, grupos e horários de missas
 - Ativação/desativação de grupos e missas sem perda de histórico
 - Consulta de inscritos por grupo e de voluntários por evento
 
@@ -52,95 +49,28 @@ Projeto acadêmico de extensão desenvolvido em três sprints (US001–US017).
 - Blade (template engine do Laravel)
 - PHPUnit (testes Unit e Feature)
 
-## Requisitos
-
-- PHP >= 8.1 com as extensões `bcmath`, `ctype`, `curl`, `dom`, `fileinfo`, `json`, `mbstring`, `openssl`, `pdo_mysql`, `tokenizer`, `xml`
-- Composer 2.x
-- MySQL 8 (ou MariaDB 10.6+)
-- Git
-- Node.js 18+ (opcional, apenas para recompilar assets)
-
-## Configuração do ambiente de desenvolvimento
-
-```bash
-git clone https://github.com/JoaoVitorGrando/Paroquia-online.git
-cd Paroquia-online
-
-composer install
-
-cp .env.example .env
-php artisan key:generate
-```
-
-Edite o `.env` com as credenciais do seu MySQL:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=paroquia_online
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-> Se o `php artisan migrate` retornar `SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost'`, o usuário e a senha do `.env` não correspondem aos do MySQL local. Ajuste `DB_USERNAME`/`DB_PASSWORD` e rode `php artisan config:clear` antes de tentar novamente.
-
-Para testar o formulário de contato localmente, configure também as variáveis `MAIL_*` (use `MAIL_MAILER=log` para gravar o e-mail em `storage/logs/laravel.log` em vez de enviá-lo).
-
-Crie o banco e rode as migrations com a carga inicial:
-
-```bash
-mysql -u root -e "CREATE DATABASE paroquia_online CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-php artisan migrate --seed
-```
-
-## Como rodar localmente
-
-```bash
-php artisan serve
-```
-
-Acesse <http://localhost:8000>.
-
 ## Testes
 
-```bash
-php artisan test              # toda a suíte
-php artisan test --filter=Grupo
-```
-
-Cobertura atual: autenticação, grupos, eventos e formulário de contato.
+O projeto conta com uma suíte de testes automatizados construída com PHPUnit,
+cobrindo autenticação, grupos, eventos, missas, avisos, voluntariado, formulário
+de contato, páginas públicas e as restrições de acesso à área administrativa.
 
 ## Estrutura do projeto
 
 ```
 app/
-├── Http/Controllers/   # Home, Missa, Evento, Aviso, Grupo, Voluntario, Auth, Admin
-├── Http/Middleware/    # middleware 'admin' (verifica is_admin)
+├── Http/Controllers/   # Home, Missa, Evento, Aviso, Grupo, Voluntario, Auth
+├── Http/Middleware/    # controle de permissões de acesso
 ├── Mail/               # ContatoRecebido (mailable do formulário de contato)
 └── Models/             # User, Missa, Evento, Aviso, Grupo
 database/
 ├── migrations/         # esquema do banco versionado
-└── seeders/            # AdminSeeder e cargas iniciais
-resources/views/        # templates Blade (layout, páginas públicas e admin)
+└── seeders/            # cargas iniciais de dados
+resources/views/        # templates Blade (layout e páginas)
 routes/web.php          # todas as rotas da aplicação
 public/                 # raiz web (index.php, css, js, imagens)
 tests/                  # testes Unit e Feature
 ```
-
-## Deploy em produção
-
-Resumo — o procedimento completo está no Manual Técnico e Guia de Implantação (Seção 5 da documentação do projeto):
-
-```bash
-git pull origin main
-composer install --no-dev --optimize-autoloader
-php artisan migrate --force
-php artisan optimize:clear
-php artisan config:cache && php artisan route:cache && php artisan view:cache
-```
-
-Requisitos de produção: raiz web apontando para `public/`, `APP_ENV=production`, `APP_DEBUG=false`, HTTPS ativo, `storage/` e `bootstrap/cache/` graváveis pelo usuário do servidor web, e backup diário do banco.
 
 ## Documentação
 
@@ -157,7 +87,7 @@ A documentação completa do projeto é entregue em documento único, formatado 
 ## Sprints
 
 - **Sprint 1** — US001 a US004: horários de missas, eventos e festas, cadastro e login.
-- **Sprint 2** — US005 a US012: inscrição em grupos, voluntariado, painel admin de eventos e avisos, Home, Sobre, Avisos e Contato.
+- **Sprint 2** — US005 a US012: inscrição em grupos, voluntariado, gestão de eventos e avisos, Home, Sobre, Avisos e Contato.
 - **Sprint 3** — US013 a US017: CRUD de grupos e de missas, envio real de e-mail no contato, testes automatizados e refinos de UX (hero na home e rodapé fixo).
 
 ## Licença
